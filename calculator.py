@@ -1,43 +1,30 @@
 #!C:/Users/evanj/AppData/Local/Programs/Python/Python310/python.exe
-
+import re
 import math
-import sys
+"""The idea here is to take input and use regexes to put the operations in a workable order according to pemdas."""
 
-"""def calculate(number1, number2, operator):
-	output = 0
-	
-	if operator.lower() == 'add':
-		output = int(number1) + int(number2)
+def calculate(expression_slice):
+	if "+" in expression_slice:
+		pass
+	if "-" in expression_slice:
+		pass
+	if "*" in expression_slice:
+		pass
+	if "/" in expression_slice:
+		pass
 
-	if operator.lower() == 'subtract':
-		output = int(number1) - int(number2)
+parentheses_pattern = r'(\(\d+ [\+\-\*\/] \d+\))'
+division_pattern = r'(\d+ \/ \d+)'
+multiply_pattern = r'(\d+ \* \d+)'
+addition_pattern = r'(\d+ \+ \d+)'
+subtraction_pattern = r'(\d+ \- \d+)'
 
-	if operator.lower() == 'multiply':
-		output = int(number1) * int(number2)
-
-	if operator.lower() == 'divide':
-		output = int(number1) / int(number2)
-
-	if operator.lower() == 'power':
-		output = int(number1) ** int(number2)
-
-	return print(output)"""
+print("Welcome to this Regex Calculator!")
 
 
-print("Welcome! This is a new and improved calculator which can handle longer strings of input, with spaces between the elements.\nExample: 3 + 4 / 2 * 5 which would equal 13.")
-operators = ['+', '-', '*', '/']
+expression = input("Input an expression to be evaluated: \n>>> ")
 
-def new_func():
-          print("Invalid input!")
 
-while True:
-	expression = input("Write an expression:\n>>> ")
-	expression = expression.split()
-	result = 0
-	number = 0
+match = re.findall(parentheses_pattern, expression)
 
-	for element in expression:
-		if element.isnumeric():
-			number = float(element)
-			continue
-	print(result)
+print(match)
