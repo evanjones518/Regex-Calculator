@@ -1,6 +1,5 @@
 #!C:/Users/evanj/AppData/Local/Programs/Python/Python310/python.exe
 import re
-import math
 """The idea here is to take input and use regexes to put the operations in a workable order according to pemdas."""
 
 def calculate(expression_slice):
@@ -27,10 +26,8 @@ def calculate(expression_slice):
 def replace_element(input_expression, all_occurances):
 	for occurance in all_occurances:
 		evaluated = calculate(occurance)
-		input_expression = input_expression.replace(occurance, str(evaluated))
-	return print(input_expression)
-
-
+		input_expression = input_expression.replace(occurance, str(int(evaluated)))
+	return input_expression
 
 parentheses_pattern = r'(\(\d+ [\+\-\*\/] \d+\))'
 division_pattern = r'(\d+ \/ \d+)'
@@ -40,14 +37,55 @@ subtraction_pattern = r'(\d+ \- \d+)'
 has_parentheses = r'[\(\)]'
 
 print("Welcome to this Regex Calculator!")
-
 expression = input("Enter an expression:\n>>>")
 
-occurances = re.findall(parentheses_pattern, expression)
-indices = re.search(parentheses_pattern, expression)
+while True:
+	
+	if re.match(parentheses_pattern, expression):
+		occurances = re.findall(parentheses_pattern, expression)
+		print(occurances)
+		expression = replace_element(expression, occurances)
+		print(expression)
+	else:
+		break
 
-#expression = expression.replace(str(occurances[0]), str(result))
+while True:
 
-#print(expression)
+	if re.match(division_pattern, expression):
+		occurances = re.findall(division_pattern, expression)
+		print(occurances)
+		expression = replace_element(expression, occurances)
+		print(expression)
+	else:
+		break
 
-replace_element(expression, occurances)
+while True:
+
+	if re.match(multiply_pattern, expression):
+		occurances = re.findall(multiply_pattern, expression)
+		print(occurances)
+		expression = replace_element(expression, occurances)
+		print(expression)
+	else:
+		break
+
+while True:
+
+	if re.match(addition_pattern, expression):
+		occurances = re.findall(addition_pattern, expression)
+		print(occurances)
+		expression = replace_element(expression, occurances)
+		print(expression)
+	else:
+		break
+
+while True:
+
+	if re.match(subtraction_pattern, expression):
+		occurances = re.findall(subtraction_pattern, expression)
+		print(occurances)
+		expression = replace_element(expression, occurances)
+		print(expression)
+	else:
+		break
+print(expression)
