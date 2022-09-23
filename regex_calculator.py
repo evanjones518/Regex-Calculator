@@ -1,6 +1,6 @@
 #!C:/Users/evanj/AppData/Local/Programs/Python/Python310/python.exe
 import re
-"""The idea here is to take input and use regexes to put the operations in a workable order according to pemdas."""
+"""This calculator takes a mathematical expression from keyboard input and calculates it based on the order of operations."""
 
 '''This function takes a match from the regex patterns and operates on them, returning the evaluated chunk.'''
 def calculate(expression_slice):
@@ -32,59 +32,74 @@ def replace_element(input_expression, all_occurances):
 	return input_expression
 
 '''Regex patterns for matching purposes.'''
-parentheses_pattern = r'(\([0-9\.]+ [\+\-\*\/] [0-9\.]+\))'
-division_pattern = r'([0-9\.]+ \/ [0-9\.]+)'
-multiply_pattern = r'([0-9\.]+ \* [0-9\.]+)'
-addition_pattern = r'([0-9\.]+ \+ [0-9\.]+)'
-subtraction_pattern = r'([0-9\.]+ \- [0-9\.]+)'
+parentheses_pattern = r'(\([\-0-9\.]+ [\+\-\*\/] [\-0-9\.]+\))'
+division_pattern = r'([\-0-9\.]+ \/ [\-0-9\.]+)'
+multiply_pattern = r'([\-0-9\.]+ \* [\-0-9\.]+)'
+addition_pattern = r'([\-0-9\.]+ \+ [\-0-9\.]+)'
+subtraction_pattern = r'([\-0-9\.]+ \- [\-0-9\.]+)'
 has_parentheses = r'[\(\)]'
+completed_pattern = r'([\-0-9\.])'
 
 print("Welcome to the new and improved Regex Calculator! Valid entries include spaces between every element. Example:\n5 + 9 - (4 * 2)")
-expression = input("Enter an expression:\n>>>")
+continue_calc = True
+while continue_calc == True:
+	
+	
+	expression = input("Enter an expression:\n>>>")
+	if expression.isalpha():
+		print("Invalid input!")
+		continue
 
-while True:
-	if re.search(parentheses_pattern, expression):
-		occurances = re.findall(parentheses_pattern, expression)
-		print(occurances)
-		expression = replace_element(expression, occurances)
-		print(expression)
-	else:
-		break
+	while True:
+		if re.search(parentheses_pattern, expression):
+			occurances = re.findall(parentheses_pattern, expression)
+			print(occurances)
+			expression = replace_element(expression, occurances)
+			print(expression)
+		else:
+			break
 
-while True:
-	if re.search(division_pattern, expression):
-		occurances = re.findall(division_pattern, expression)
-		print(occurances)
-		expression = replace_element(expression, occurances)
-		print(expression)
-	else:
-		break
+	while True:
+		if re.search(division_pattern, expression):
+			occurances = re.findall(division_pattern, expression)
+			print(occurances)
+			expression = replace_element(expression, occurances)
+			print(expression)
+		else:
+			break
 
-while True:
-	if re.search(multiply_pattern, expression):
-		occurances = re.findall(multiply_pattern, expression)
-		print(occurances)
-		expression = replace_element(expression, occurances)
-		print(expression)
-	else:
-		break
+	while True:
+		if re.search(multiply_pattern, expression):
+			occurances = re.findall(multiply_pattern, expression)
+			print(occurances)
+			expression = replace_element(expression, occurances)
+			print(expression)
+		else:
+			break
 
-while True:
-	if re.search(subtraction_pattern, expression):
-		occurances = re.findall(subtraction_pattern, expression)
-		print(occurances)
-		expression = replace_element(expression, occurances)
-		print(expression)
-	else:
-		break
+	while True:
+		if re.search(subtraction_pattern, expression):
+			occurances = re.findall(subtraction_pattern, expression)
+			print(occurances)
+			expression = replace_element(expression, occurances)
+			print(expression)
+		else:
+			break
 
-while True:
-	if re.search(addition_pattern, expression):
-		occurances = re.findall(addition_pattern, expression)
-		print(occurances)
-		expression = replace_element(expression, occurances)
-		print(expression)
-	else:
-		break
+	while True:
+		if re.search(addition_pattern, expression):
+			occurances = re.findall(addition_pattern, expression)
+			print(occurances)
+			expression = replace_element(expression, occurances)
+			print(expression)
+		else:
+			break
 
-print(expression)
+	while True:
+		continue_program = input("Would you like to perform another calculation?\n(yes/no)\n>>> ")
+		if continue_program.lower() == 'yes':
+			break
+		elif continue_program.lower() == 'no':
+			exit()
+		else:
+			print("Invalid input!")
