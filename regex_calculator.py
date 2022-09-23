@@ -28,15 +28,15 @@ def calculate(expression_slice):
 def replace_element(input_expression, all_occurances):
 	for occurance in all_occurances:
 		evaluated = calculate(occurance)
-		input_expression = input_expression.replace(occurance, str(int(evaluated)))
+		input_expression = input_expression.replace(occurance, str(evaluated))
 	return input_expression
 
 '''Regex patterns for matching purposes.'''
-parentheses_pattern = r'(\(\d+ [\+\-\*\/] \d+\))'
-division_pattern = r'(\d+ \/ \d+)'
-multiply_pattern = r'(\d+ \* \d+)'
-addition_pattern = r'(\d+ \+ \d+)'
-subtraction_pattern = r'(\d+ \- \d+)'
+parentheses_pattern = r'(\([0-9\.]+ [\+\-\*\/] [0-9\.]+\))'
+division_pattern = r'([0-9\.]+ \/ [0-9\.]+)'
+multiply_pattern = r'([0-9\.]+ \* [0-9\.]+)'
+addition_pattern = r'([0-9\.]+ \+ [0-9\.]+)'
+subtraction_pattern = r'([0-9\.]+ \- [0-9\.]+)'
 has_parentheses = r'[\(\)]'
 
 print("Welcome to the new and improved Regex Calculator! Valid entries include spaces between every element. Example:\n5 + 9 - (4 * 2)")
