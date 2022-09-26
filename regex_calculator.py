@@ -1,4 +1,5 @@
 #!C:/Users/evanj/AppData/Local/Programs/Python/Python310/python.exe
+"""Temporary hardcoded path because PATH variable is not playing nicely."""
 import re
 """This calculator takes a mathematical expression from keyboard input and calculates it based on the order of operations."""
 
@@ -38,14 +39,13 @@ multiply_pattern = r'([\-0-9\.]+ \* [\-0-9\.]+)'
 addition_pattern = r'([\-0-9\.]+ \+ [\-0-9\.]+)'
 subtraction_pattern = r'([\-0-9\.]+ \- [\-0-9\.]+)'
 has_parentheses = r'[\(\)]'
-completed_pattern = r'([\-0-9\.])'
 
 print("Welcome to the new and improved Regex Calculator! Valid entries include spaces between every element. Example:\n5 + 9 - (4 * 2)")
 continue_calc = True
 while continue_calc == True:
 	
 	
-	expression = input("Enter an expression:\n>>>")
+	expression = input("Enter an expression:\n>>> ")
 	if expression.isalpha():
 		print("Invalid input!")
 		continue
